@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>New File</h1>
+    <form action="{% url "post_document_new" %}" method="POST"  enctype="multipart/form-data">
+    {% csrf_token %}
+        {{ form.as_p }}
+        <div class="btn-group">
+          <button type="submit" class="btn btn-success">Save</button>
+          <button onclick="window.history.go(-1);" class="btn btn-primary">Voltar</button>
+        </div>
+    </form>
+{% endblock %}
+
+    <div class="bd-example" data-example-id="">
+      <h1>New File</h1>
+      <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+          <label>Title</label>
+          <input type="title" class="form-control" id="inputTitle" placeholder="Enter title">
+        </fieldset>
+
+        <fieldset class="form-group">
+          <label>Resume</label>
+          <textarea class="form-control" id="resumeTextarea" rows="3"></textarea>
+        </fieldset>
+
+        <fieldset class="form-group">
+          <label>File input</label>
+          <input type="file" class="form-control-file" id="inputFile">
+        </fieldset>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </form>
+    </div>
+
+
+
+
+

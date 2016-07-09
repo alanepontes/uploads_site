@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {% for post_document in posts_documents %}
+        <div class="post-preview">
+            <a href="{% url 'log.views.post_document_detail' id=post_document.id %}">
+                <h2 class="post-title">
+                    {{post_document.title}}
+                </h2>
+            </a>
+            <p class="post-meta">{{post_document.author}} {{post_document.published_date}}</p>
+
+            <div class="btn-group">
+              <a href="{% url 'log.views.post_document_download' id=post_document.id %}"  class="btn btn-info">
+                Download
+              </a>
+
+              {% if request.user == post_document.author %}
+                <a href="{% url 'log.views.post_document_edit' id=post_document.id %}"  class="btn btn-primary">
+                  Edit
+                </a>
+                <a href="{% url 'log.views.post_document_delete' id=post_document.id %}"  class="btn btn-danger">
+                  Delete
+                </a>
+              {%endif%}
+            </div>
+        </div>
+        <hr>
+
+    {% endfor %}
+{% endblock %}
+
